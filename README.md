@@ -10,7 +10,7 @@ First, you'll need to install [cookiecutter](https://cookiecutter.readthedocs.io
 
 Then I invite you to run the following command:
 
-``bash
+``` bash
 cookiecutter https://github.com/Kludex/python-template
 ```
 
