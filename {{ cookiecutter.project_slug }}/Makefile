@@ -4,7 +4,7 @@ help: ## Show this help
 
 .PHONY: lint
 lint:  ## Linter the code.
-	isort {{ cookiecutter.package }} --check
+	isort {{ cookiecutter.package }} tests --check
 	flake8 .
 	mypy {{ cookiecutter.package }}
 
