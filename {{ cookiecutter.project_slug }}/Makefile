@@ -6,7 +6,7 @@ help: ## Show this help
 lint:  ## Linter the code.
 	isort {{ cookiecutter.package }} --check
 	flake8 .
-	mypy .
+	mypy {{ cookiecutter.package }}
 
 .PHONY: test
 test:  ## Test your code.
