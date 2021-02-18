@@ -3,6 +3,7 @@ repos:
     rev: v1.4
     hooks:
       - id: autoflake
+        exclude: __init__.py
         args:
           - --in-place
           - --remove-all-unused-imports
