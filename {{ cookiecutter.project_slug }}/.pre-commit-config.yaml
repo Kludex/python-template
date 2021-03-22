@@ -11,7 +11,7 @@ repos:
           - --remove-duplicate-keys
           - --remove-unused-variables
   - repo: https://github.com/pre-commit/mirrors-isort
-    rev: v5.4.2
+    rev: v5.8.0
     hooks:
       - id: isort
         args: ["--profile", "black"]
