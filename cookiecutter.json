@@ -4,5 +4,6 @@
   "full_name": "John Doe",
   "email": "johndoe@email.com",
   "github_username": "JohnDoe",
+  "license": ["MIT", "BSD-3", "GNU GPL v3.0", "Apache Software License 2.0"],
   "year": "{% now 'utc', '%Y' %}"
 }
