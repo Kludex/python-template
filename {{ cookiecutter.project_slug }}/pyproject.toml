@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["{{ cookiecutter.full_name }} <{{ cookiecutter.email }}>"]
 readme = "README.md"
-license = "MIT"
+license = "{{ cookiecutter.license }}"
 repository = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
 
 classifiers = [
