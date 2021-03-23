@@ -6,6 +6,7 @@ authors = ["{{ cookiecutter.full_name }} <{{ cookiecutter.email }}>"]
 readme = "README.md"
 license = "{{ cookiecutter.license }}"
 repository = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
+include = ["{{ cookiecutter.package }}/py.typed"]
 
 classifiers = [
     "Topic :: Software Development :: Build Tools",
