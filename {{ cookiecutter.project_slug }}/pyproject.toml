@@ -17,14 +17,12 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.6",
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6.1"
+python = "^3.8"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"
