@@ -15,7 +15,7 @@ lint:  ## Linter the code.
 format:
 	isort {{ cookiecutter.package }} tests
 	autoflake --remove-all-unused-imports --recursive --remove-unused-variables --in-place {{ cookiecutter.package }} tests --exclude=__init__.py
-	black {{ cookicutter.package }} tests
+	black {{ cookiecutter.package }} tests
 
 
 .PHONY: test
