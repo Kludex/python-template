@@ -32,8 +32,13 @@ autoflake = "^1.4"
 isort = "^5.0"
 pytest-cov = "^2.10.1"
 pre-commit = "^2.9.3"
-mypy = "^0.790"
+mypy = "^0.812"
 mkdocs-material = "^6.1.7"
+Cython = "^0.29.22"
+
+[tool.poetry.build]
+script = "build.py"
+generate-setup-file = false
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

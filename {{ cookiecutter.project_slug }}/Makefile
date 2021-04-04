@@ -21,3 +21,8 @@ format:
 .PHONY: test
 test:  ## Test your code.
 	poetry run pytest tests/ --cov={{ cookiecutter.package }} --cov-report=term-missing:skip-covered --cov-report=xml --cov-fail-under 100
+
+
+.PHONY: build_wheel
+build_wheel:  ## Build a Cythonized wheel
+	poetry build --format wheel
