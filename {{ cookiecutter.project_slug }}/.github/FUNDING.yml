@@ -1,0 +1,1 @@
+github: "{{cookiecutter.github_username}}"

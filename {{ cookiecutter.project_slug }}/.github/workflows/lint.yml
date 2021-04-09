@@ -1,5 +1,5 @@
 {% raw -%}
-name: Test
+name: Lint
 
 on:
   push:
@@ -9,24 +9,23 @@ on:
     branches: [master, main]
 
 jobs:
-  tests:
+  build:
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
       matrix:
-        python-version: [3.8, 3.9]
+        python-version: [3.8]
 
     steps:
       - name: Checkout changes
         uses: actions/checkout@v2
 
       - name: pip cache
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ~/.cache/pip
-          key: lint-pip-${{ matrix.python-version }}-${{ hashFiles('**/pyproject.toml') }}
+          key: lint-pip-${{ hashFiles('**/pyproject.toml') }}
           restore-keys: |
-            lint-pip-${{ matrix.python-version }}-
+            lint-pip-
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
@@ -38,10 +37,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install --upgrade poetry
           poetry install
-{%- endraw %}
-      - name: Run tests
-        shell: bash
-        run: poetry run pytest tests/ --cov={{cookiecutter.package}} --cov-report=term-missing:skip-covered --cov-report=xml
 
-      - name: Upload coverage
-        uses: codecov/codecov-action@v1
+      - name: Lint
+        run: make lint
+{%- endraw %}

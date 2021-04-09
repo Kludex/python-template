@@ -5,19 +5,24 @@ help: ## Show this help
 
 .PHONY: lint
 lint:  ## Linter the code.
-	isort {{ cookiecutter.package }} tests --check
-	flake8 {{ cookiecutter.package }} tests
-	mypy {{ cookiecutter.package }}
-	black {{ cookiecutter.package }} tests --check --diff
+	@echo "🚨 Linting code"
+	poetry run isort {{ cookiecutter.package }} tests --check
+	poetry run flake8 {{ cookiecutter.package }} tests
+	poetry run mypy {{ cookiecutter.package }}
+	poetry run black {{ cookiecutter.package }} tests --check --diff
+	poetry run bandit -r {{cookiecutter.project_name}}/
+	poetry run safety check -i 39462
 
 
 .PHONY: format
 format:
-	isort {{ cookiecutter.package }} tests
-	autoflake --remove-all-unused-imports --recursive --remove-unused-variables --in-place {{ cookiecutter.package }} tests --exclude=__init__.py
-	black {{ cookiecutter.package }} tests
+	@echo "🎨 Formatting code"
+	poetry run isort {{ cookiecutter.package }} tests
+	poetry run autoflake --remove-all-unused-imports --recursive --remove-unused-variables --in-place {{ cookiecutter.package }} tests --exclude=__init__.py
+	poetry run black {{ cookiecutter.package }} tests
 
 
 .PHONY: test
 test:  ## Test your code.
+	@echo "🍜 Running pytest"
 	poetry run pytest tests/ --cov={{ cookiecutter.package }} --cov-report=term-missing:skip-covered --cov-report=xml --cov-fail-under 100
