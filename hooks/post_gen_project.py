@@ -1,8 +1,10 @@
+import os
 import shutil
 
 
 def remove_docs():
     shutil.rmtree("docs")
+    os.remove(".github/workflows/deploy-docs.yml")
 
 
 def main():
