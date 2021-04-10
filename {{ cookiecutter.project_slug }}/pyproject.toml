@@ -38,15 +38,19 @@ pytest = "^6.2"
 pytest-cov = "^2.10.1"
 pytest-mock = "^3.5"
 mypy = "^0.812"
+{%- if cookiecutter.add_cython == "True" %}
 Cython = "^0.29.22"
+{%- endif %}
 ipython = "^7.7"
 {%- if cookiecutter.add_docs == "True" %}
 portray = "^1.6.0"
 {%- endif %}
 
+{%- if cookiecutter.add_cython == "True" %}
 [tool.poetry.build]
 script = "build.py"
 generate-setup-file = false
+{%- endif %}
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
