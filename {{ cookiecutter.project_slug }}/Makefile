@@ -10,8 +10,6 @@ lint:  ## Linter the code.
 	poetry run flake8 {{ cookiecutter.package }} tests
 	poetry run mypy {{ cookiecutter.package }}
 	poetry run black {{ cookiecutter.package }} tests --check --diff
-	poetry run bandit -r {{ cookiecutter.package }}/
-	poetry run safety check -i 39462
 
 
 .PHONY: format
