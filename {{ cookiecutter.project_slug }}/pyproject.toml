@@ -26,31 +26,13 @@ python = "^3.8"
 
 [tool.poetry.dev-dependencies]
 autoflake = "^1.4"
-bandit = "^1.6"
 black = "^20.8b1"
-cruft = "^2.2"
 flake8 = "^3.9.0"
-vulture = "^1.0"
-safety = "^1.8"
 isort = "^5.0"
 pre-commit = "^2.9.3"
 pytest = "^6.2"
 pytest-cov = "^2.10.1"
-pytest-mock = "^3.5"
 mypy = "^0.812"
-{%- if cookiecutter.add_cython == "True" %}
-Cython = "^0.29.22"
-{%- endif %}
-ipython = "^7.7"
-{%- if cookiecutter.add_docs == "True" %}
-portray = "^1.6.0"
-{%- endif %}
-
-{%- if cookiecutter.add_cython == "True" %}
-[tool.poetry.build]
-script = "build.py"
-generate-setup-file = false
-{%- endif %}
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
