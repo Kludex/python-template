@@ -34,14 +34,10 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install --upgrade poetry
-          poetry install
+        run: make install
 {%- endraw %}
       - name: Run tests
-        shell: bash
-        run: poetry run pytest tests/ --cov={{cookiecutter.package}} --cov-report=term-missing:skip-covered --cov-report=xml
+        run: make test
 
       - name: Upload coverage
         uses: codecov/codecov-action@v1
