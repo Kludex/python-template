@@ -15,7 +15,6 @@ repos:
     hooks:
       - id: isort
         args: ["--profile", "black"]
-        exclude: build.py
   - repo: https://github.com/psf/black
     rev: 20.8b1
     hooks:
