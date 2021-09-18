@@ -32,7 +32,7 @@ isort = "^5.0"
 pre-commit = "^2.9.3"
 pytest = "^6.2"
 pytest-cov = "^2.10.1"
-mypy = "^0.812"
+mypy = "^0.910"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
