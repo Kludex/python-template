@@ -1,5 +1,5 @@
 {% raw -%}
-name: Test
+name: Test Suite
 
 on:
   push:
@@ -10,11 +10,13 @@ on:
 
 jobs:
   tests:
-    runs-on: ubuntu-latest
+    name: "Python ${{ matrix.python-version }} ${{ matrix.os }}"
+    runs-on: "${{ matrix.os }}"
     strategy:
       fail-fast: false
       matrix:
-        python-version: [3.8, 3.9]
+        python-version: ["3.8", "3.9", "3.10.0-rc.2"]
+        os: [windows-latest, ubuntu-latest, macos-latest]
 
     steps:
       - name: Checkout changes
