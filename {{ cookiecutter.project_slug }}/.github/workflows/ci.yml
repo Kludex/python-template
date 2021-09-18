@@ -1,12 +1,10 @@
 {% raw -%}
-name: Test Suite
+name: CI
 
 on:
   push:
-    branches: ["main"]
-
+    branches: [main]
   pull_request:
-    branches: ["main"]
 
 jobs:
   tests:
@@ -41,9 +39,11 @@ jobs:
           python -m pip install --upgrade poetry
           poetry install
 {%- endraw %}
+      - name: Lint Python
+        run: make lint
+
       - name: Run tests
-        shell: bash
-        run: poetry run pytest tests/ --cov={{cookiecutter.package}} --cov-report=term-missing:skip-covered --cov-report=xml
+        run: make test
 
       - name: Upload coverage
         uses: codecov/codecov-action@v1
