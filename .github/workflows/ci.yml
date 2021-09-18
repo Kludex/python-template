@@ -18,13 +18,13 @@ jobs:
       - name: Checkout changes
         uses: actions/checkout@v2
 
-      # - name: pip cache
-      #   uses: actions/cache@v1
-      #   with:
-      #     path: ~/.cache/pip
-      #     key: lint-pip-${{ matrix.python-version }}-${{ hashFiles('**/pyproject.toml') }}
-      #     restore-keys: |
-      #       lint-pip-${{ matrix.python-version }}-
+      - name: pip cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache/pip
+          key: lint-pip-${{ matrix.python-version }}-${{ hashFiles('**/pyproject.toml') }}
+          restore-keys: |
+            lint-pip-${{ matrix.python-version }}-
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
