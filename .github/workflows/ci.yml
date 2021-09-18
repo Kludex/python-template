@@ -42,11 +42,13 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade poetry
-          cd package-name
           poetry install
+        working-directory: "{{ cookiecutter.project_slug }}"
 
       - name: Lint Python
         run: make lint
+        working-directory: "{{ cookiecutter.project_slug }}"
 
       - name: Run tests
         run: make test
+        working-directory: "{{ cookiecutter.project_slug }}"
