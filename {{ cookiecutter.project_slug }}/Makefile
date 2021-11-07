@@ -14,6 +14,7 @@ install:  ## Install package
 .PHONY: lint
 lint:  ## Linter the code.
 	@echo "🚨 Linting code"
+	poetry run cruft check
 	poetry run isort {{ cookiecutter.package }} tests --check
 	poetry run flake8 {{ cookiecutter.package }} tests
 	poetry run mypy {{ cookiecutter.package }}
