@@ -39,7 +39,7 @@ jobs:
         run: cookiecutter . --no-input
 
       - name: Install dependencies
-        run: make install
+        run: python -m pip install -r requirements.txt
         working-directory: "package-name"
 
       - name: Lint Python
@@ -47,5 +47,5 @@ jobs:
         working-directory: "package-name"
 
       - name: Run tests
-        run: make test
+        run: make tests
         working-directory: "package-name"

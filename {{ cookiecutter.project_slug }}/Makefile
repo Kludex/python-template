@@ -20,7 +20,7 @@ format:
 	black {{ cookiecutter.package }} tests
 
 
-.PHONY: test
+.PHONY: tests
 test:  ## Test your code.
 	@echo "🍜 Running pytest"
 	pytest tests/ --cov={{ cookiecutter.package }} --cov-report=term-missing:skip-covered --cov-report=xml --cov-fail-under 100
