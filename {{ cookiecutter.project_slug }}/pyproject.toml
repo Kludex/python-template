@@ -1,39 +1,29 @@
-[tool.poetry]
-name = "{{ cookiecutter.project_slug }}"
-version = "0.1.0"
-description = "{{ cookiecutter.description }}"
-authors = ["{{ cookiecutter.full_name }} <{{ cookiecutter.email }}>"]
-license = "{{ cookiecutter.license }}"
-readme = "README.md"
-repository = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
-include = ["{{ cookiecutter.package }}/py.typed"]
-
-classifiers = [
-    "Topic :: Software Development :: Libraries :: Python Modules",
-    "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-]
-
-[tool.poetry.dependencies]
-python = "^3.8"
-
-[tool.poetry.dev-dependencies]
-autoflake = "^1.4"
-black = "^21.9b0"
-flake8 = "^3.9.0"
-isort = "^5.0"
-pre-commit = "^2.9.3"
-pytest = "^6.2"
-pytest-cov = "^2.10.1"
-mypy = "^0.910"
-
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools >= 40.6.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_any_generics = true
+disallow_incomplete_defs = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+show_error_codes = true
+warn_unreachable = true
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+allow_untyped_defs = true
+
+[tool.pytest.ini_options]
+addopts = """\
+    --strict-config
+    --strict-markers
+    """

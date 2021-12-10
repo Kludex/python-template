@@ -2,10 +2,8 @@
   "project_slug": "package-name",
   "package": "{{ cookiecutter.project_slug.lower().replace(\"-\",\"_\").replace(\" \",\"_\") }}",
   "description": "An awesome package is coming soon! 🎉",
-  "full_name": "John Doe",
-  "email": "johndoe@email.com",
-  "github_username": "JohnDoe",
-  "license": ["MIT", "BSD-3", "GNU GPL v3.0", "Apache Software License 2.0"],
-  "year": "{% now 'utc', '%Y' %}",
-  "add_docs": [false, true]
+  "full_name": "Marcelo Trylesinski",
+  "email": "marcelotryle@email.com",
+  "github": "Kludex",
+  "twitter": "marcelotryle"
 }
