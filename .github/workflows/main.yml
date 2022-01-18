@@ -38,7 +38,7 @@ jobs:
         working-directory: "package-name"
 
       - name: Run pre-commit
-        run: python -m pre-commit run --all-files --show-diff-on-failure
+        run: pre-commit run --all-files --show-diff-on-failure
         working-directory: "package-name"
 
       - name: Run tests
