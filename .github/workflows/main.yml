@@ -38,9 +38,10 @@ jobs:
         working-directory: "package-name"
 
       - name: Run pre-commit
+        if: ${{ matrix.os }} == 'ubuntu-latest' && ${{ matrix.python-version }} == '3.7'
         run: pre-commit run --all-files --show-diff-on-failure
         working-directory: "package-name"
 
       - name: Run tests
-        run: coverage run -m pytest
+        run: pytest
         working-directory: "package-name"
