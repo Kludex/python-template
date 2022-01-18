@@ -17,10 +17,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: lint-pip-${{ matrix.python-version }}-${{ hashFiles('**/pyproject.toml') }}
+          restore-keys: |
+            lint-pip-${{ matrix.python-version }}-
+
       - uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-          cache: "pip"
 
       - name: Install Cookiecutter
         run: |
