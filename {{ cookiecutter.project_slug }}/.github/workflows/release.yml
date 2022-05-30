@@ -1,0 +1,71 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: "Part of the version to bump"
+        required: true
+        default: "patch"
+        type: choice
+        options: ["major", "minor", "patch"]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+        with:
+          python-version: "3.7"
+
+      - name: Retrieve current version
+        run: |
+          major=$(cat setup.cfg | grep 'version = .*' | sed -E 's/^version = (0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)/\1/')
+          minor=$(cat setup.cfg | grep 'version = .*' | sed -E 's/^version = (0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)/\1/')
+          patch=$(cat setup.cfg | grep 'version = .*' | sed -E 's/^version = (0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)/\1/')
+          echo "Current version: $major.$minor.$patch"
+
+          echo "major=$major" >> $GITHUB_ENV
+          echo "minor=$minor" >> $GITHUB_ENV
+          echo "patch=$patch" >> $GITHUB_ENV
+
+      - name: Bump major version
+        if: ${{ github.event.inputs.bump == 'major' }}
+        run: |
+          echo "Bumping major version from $major.$minor.$patch to $(($major + 1)).0.0"
+          version='$(($major + 1)).0.0'
+          sed -i -E "s/^version = (0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)/version = $version/" setup.cfg
+
+      - name: Bump minor version
+        if: ${{ github.event.inputs.bump == 'minor' }}
+        run: |
+          echo "Bumping minor version from $major.$minor.$patch to $major.($minor + 1).0"
+          version='$major.$(($minor + 1)).0'
+          sed -i -E "s/^version = (0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)/version = $version/" setup.cfg
+
+      - name: Bump patch version
+        if: ${{ github.event.inputs.bump == 'patch' }}
+        run: |
+          echo "Bumping patch version from $major.$minor.$patch to $major.$minor.($patch + 1)"
+          version='$major.$minor.$(($patch + 1))'
+          sed -i -E "s/^version = (0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)/version = $version/" setup.cfg
+
+      - name: Commit version bump
+        run: |
+          git add setup.cfg
+          git commit -m "Bump version to $version"
+          git push origin main
+
+      - name: Tag version
+        run: |
+          git tag -a v$version -m "Version $version"
+          git push origin main --tags
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip setuptool wheel
+
+      - name: PyPI release
+        run: |
+          python setup.py bdist_wheel
+          twine upload dist/*
