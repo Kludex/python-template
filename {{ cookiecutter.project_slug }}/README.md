@@ -5,7 +5,7 @@
     <a href="https://github.com/{{ cookiecutter.github }}/{{ cookiecutter.project_slug }}" target="_blank">
         <img src="https://img.shields.io/github/last-commit/{{ cookiecutter.github }}/{{ cookiecutter.project_slug }}" alt="Latest Commit">
     </a>
-        <img src="https://img.shields.io/github/workflow/status/{{ cookiecutter.github }}/{{ cookiecutter.project_slug }}/Test">
+        <img src="https://img.shields.io/github/workflow/status/{{ cookiecutter.github }}/{{ cookiecutter.project_slug }}/CI">
         <img src="https://img.shields.io/codecov/c/github/{{ cookiecutter.github }}/{{ cookiecutter.project_slug }}">
     <br />
     <a href="https://pypi.org/project/{{ cookiecutter.project_slug }}" target="_blank">
