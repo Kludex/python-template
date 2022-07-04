@@ -1,22 +1,40 @@
 [build-system]
-requires = ["setuptools >= 40.6.0", "wheel"]
+requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
-[tool.black]
-target-version = ['py37']
+[project]
+name = "{{ cookiecutter.project_slug }}"
+version = "0.0.0"
+description = "{{ cookiecutter.description }}"
+authors = [
+    { name = "{{ cookiecutter.full_name }}", email = "{{ cookiecutter.email }}" },
+]
+license = { text = "MIT" }
+requires-python = ">=3.7"
+dependencies = []
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+]
 
-[tool.isort]
-profile = "black"
+[tool.setuptools]
+license-files = ["LICENSE"]
+package-data = { "{{ cookiecutter.package }}" = ["py.typed"] }
+include-package-data = true
+zip-safe = false
 
-[tool.mypy]
-check_untyped_defs = true
-disallow_any_generics = true
-disallow_incomplete_defs = true
-disallow_untyped_defs = true
-no_implicit_optional = true
-show_error_codes = true
-warn_unreachable = true
-warn_unused_ignores = true
+[project.urls]
+Homepage = "https://github.com/{{ cookiecutter.github }}/{{ cookiecutter.project_slug }}"
+Source = "https://github.com/{{ cookiecutter.github }}/{{ cookiecutter.project_slug }}"
+Twitter = "https://twitter.com/{{ cookiecutter.twitter }}"
 
 [tool.pytest.ini_options]
 addopts = """\
