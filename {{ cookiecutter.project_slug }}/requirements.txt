@@ -1,0 +1,4 @@
+-e .
+
+coverage[toml] >= 6.2
+pytest >= 6.2.5
