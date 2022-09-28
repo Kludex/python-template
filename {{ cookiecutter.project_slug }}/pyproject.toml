@@ -36,3 +36,7 @@ zip-safe = false
 Homepage = "https://github.com/{{ cookiecutter.github }}/{{ cookiecutter.project_slug }}"
 Source = "https://github.com/{{ cookiecutter.github }}/{{ cookiecutter.project_slug }}"
 Twitter = "https://twitter.com/{{ cookiecutter.twitter }}"
+
+[tool.mypy]
+strict = true
+show_error_codes = true
