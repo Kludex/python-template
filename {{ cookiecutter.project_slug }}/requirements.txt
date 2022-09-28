@@ -1,5 +1,7 @@
 -e .
 
-coverage[toml]>=6.2
-pytest>=6.2.5
+coverage[toml]==6.2
+pytest==6.2.5
+pytest-sugar==0.9.5
 Flake8-pyproject==1.1.0.post0
+dirty-equals
