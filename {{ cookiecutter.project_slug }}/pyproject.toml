@@ -46,7 +46,7 @@ ignore = ["E203", "E501", "W503"]
 per-file-ignores = ["__init__.py:F401"]
 
 [tool.black]
-target-version = ["py310"]
+target-version = ["py37"]
 
 [tool.isort]
 profile = "black"
@@ -57,8 +57,6 @@ addopts = ["--strict-config", "--strict-markers"]
 filterwarnings = ["error"]
 
 [tool.coverage.run]
-branch = true
-parallel = true
 source_pkgs = ["{{ cookiecutter.package }}", "tests"]
 
 [tool.coverage.report]
