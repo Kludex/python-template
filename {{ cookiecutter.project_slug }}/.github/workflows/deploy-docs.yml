@@ -1,18 +1,23 @@
-name: Publish docs via GitHub Pages
+{% raw -%}
+name: Deploy Docs via GitHub Pages
+
 on:
   push:
     branches:
       - main
 
 jobs:
-  build:
-    name: Deploy docs
+  deploy:
     runs-on: ubuntu-latest
+    if: github.event.repository.fork == false
     steps:
-      - name: Checkout main
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - run: pip install mkdocs-material
+      - run: mkdocs gh-deploy --force
 
-      - name: Deploy docs
-        uses: mhausenblas/mkdocs-deploy-gh-pages@master
-        env:
-          GITHUB_TOKEN: {{ "${{ secrets.GITHUB_TOKEN }}" }}
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+{%- endraw %}

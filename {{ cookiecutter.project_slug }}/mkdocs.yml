@@ -1,3 +1,25 @@
 site_name: My Docs
 theme:
   name: material
+  palette:
+    primary: "blue"
+    accent: "orange"
+  font:
+    text: "Ubuntu"
+repo_name: {{ cookiecutter.github }}/{{ cookiecutter.project_slug }}
+repo_url: https://github.com/{{ cookiecutter.github }}/{{ cookiecutter.project_slug }}
+
+nav:
+  - Home: index.md
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - markdown.extensions.codehilite:
+      guess_lang: false
+  - admonition
+  - codehilite
+  - extra
+  - tables
+  - smarty
+  - pymdownx.tabbed

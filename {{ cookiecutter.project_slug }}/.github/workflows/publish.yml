@@ -22,7 +22,6 @@ jobs:
           version='${{ github.event.inputs.version }}'
           sed -i -E "s/^version = \"(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)\"/version = \"$version\"/" pyproject.toml
           echo "version=$version" >> $GITHUB_ENV
-          cat pyproject.toml
 
       - name: Commit version bump
         run: |
