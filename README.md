@@ -18,10 +18,6 @@ Answer some questions, and TADA! :tada:
 
 You have your Python package, ready to code! 🙂
 
-## TODO
-
-* [ ] Optional CLI possibility.
-
 ## License
 
 This project is licensed under the terms of the MIT license.
