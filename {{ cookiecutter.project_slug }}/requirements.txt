@@ -6,6 +6,7 @@ flake8
 black
 mypy
 pyproject-flake8
+pre-commit
 
 # Tests
 coverage[toml]
