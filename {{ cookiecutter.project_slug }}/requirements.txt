@@ -13,3 +13,6 @@ coverage[toml]
 pytest
 pytest-sugar
 dirty-equals
+
+# Development
+bpython
