@@ -32,24 +32,20 @@ optional-dependencies = {}
 Homepage = "https://github.com/{{ cookiecutter.github }}/{{ cookiecutter.project_slug }}"
 Source = "https://github.com/{{ cookiecutter.github }}/{{ cookiecutter.project_slug }}"
 Twitter = "https://twitter.com/{{ cookiecutter.twitter }}"
-Funding = 'https://github.com/sponsors/{{ cookiecutter.github }}'
+Funding = "https://github.com/sponsors/{{ cookiecutter.github }}"
+
+[tool.hatch.envs.{{ cookiecutter.package }}]
+type = "virtual"
+
+[[tool.hatch.envs.test.matrix]]
+python = ["3.7", "3.8", "3.9", "3.10", "3.11"]
 
 [tool.mypy]
 strict = true
 show_error_codes = true
 
-[tool.flake8]
-statistics = true
-max-line-length = 88
-ignore = ["E203", "E501", "W503"]
-per-file-ignores = ["__init__.py:F401"]
-
 [tool.black]
 target-version = ["py37"]
-
-[tool.isort]
-profile = "black"
-combine_as_imports = true
 
 [tool.pytest.ini_options]
 addopts = ["--strict-config", "--strict-markers"]
