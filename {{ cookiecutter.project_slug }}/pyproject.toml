@@ -32,13 +32,13 @@ optional-dependencies = {}
 Homepage = "https://github.com/{{ cookiecutter.github }}/{{ cookiecutter.project_slug }}"
 Source = "https://github.com/{{ cookiecutter.github }}/{{ cookiecutter.project_slug }}"
 Twitter = "https://twitter.com/{{ cookiecutter.twitter }}"
-Funding = 'https://github.com/sponsors/{{ cookiecutter.github }}'
-
-[[tool.hatch.envs.test.matrix]]
-python = ["3.7", "3.8", "3.9", "3.10", "3.11"]
+Funding = "https://github.com/sponsors/{{ cookiecutter.github }}"
 
 [tool.hatch.envs.{{ cookiecutter.package }}]
 type = "virtual"
+
+[[tool.hatch.envs.test.matrix]]
+python = ["3.7", "3.8", "3.9", "3.10", "3.11"]
 
 [tool.mypy]
 strict = true
