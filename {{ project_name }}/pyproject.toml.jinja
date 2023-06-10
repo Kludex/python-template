@@ -3,12 +3,12 @@ requires = ["hatchling"]
 build-backend = 'hatchling.build'
 
 [project]
-name = "{{ cookiecutter.project_slug }}"
+name = "{{ project_slug }}"
 version = "0.0.0"
-description = "{{ cookiecutter.description }}"
+description = "{{ description }}"
 readme = "README.md"
 authors = [
-    { name = "{{ cookiecutter.full_name }}", email = "{{ cookiecutter.email }}" },
+    { name = "{{ full_name }}", email = "{{ email }}" },
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -30,12 +30,12 @@ dependencies = []
 optional-dependencies = {}
 
 [project.urls]
-Homepage = "https://github.com/{{ cookiecutter.github }}/{{ cookiecutter.project_slug }}"
-Source = "https://github.com/{{ cookiecutter.github }}/{{ cookiecutter.project_slug }}"
-Twitter = "https://twitter.com/{{ cookiecutter.twitter }}"
-Funding = "https://github.com/sponsors/{{ cookiecutter.github }}"
+Homepage = "https://github.com/{{ github }}/{{ project_slug }}"
+Source = "https://github.com/{{ github }}/{{ project_slug }}"
+Twitter = "https://twitter.com/{{ twitter }}"
+Funding = "https://github.com/sponsors/{{ github }}"
 
-[tool.hatch.envs.{{ cookiecutter.package }}]
+[tool.hatch.envs.{{ package }}]
 type = "virtual"
 
 [[tool.hatch.envs.test.matrix]]
@@ -53,7 +53,7 @@ addopts = ["--strict-config", "--strict-markers"]
 filterwarnings = ["error"]
 
 [tool.coverage.run]
-source_pkgs = ["{{ cookiecutter.package }}", "tests"]
+source_pkgs = ["{{ package }}", "tests"]
 
 [tool.coverage.report]
 show_missing = true

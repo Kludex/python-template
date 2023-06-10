@@ -6,7 +6,7 @@ There aren't many customizable options because my needs are satisfied, but you'r
 
 ## Usage
 
-First, you'll need to install [cookiecutter](https://cookiecutter.readthedocs.io/en/1.7.2/README.html).
+First, you'll need to install [copier](https://copier.readthedocs.io/en/stable/).
 
 Then I invite you to run the following command:
 

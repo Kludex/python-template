@@ -1,0 +1,7 @@
+import inspect
+
+import {{ package }}
+
+
+def test_smoke() -> None:
+    assert inspect.ismodule({{ package }})

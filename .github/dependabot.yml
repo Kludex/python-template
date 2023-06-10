@@ -1,6 +1,6 @@
 version: 2
 updates:
   - package-ecosystem: "pip"
-    directory: "/{{ cookiecutter.project_slug }}"
+    directory: "{{ project_slug }}"
     schedule:
       interval: "monthly"

@@ -1,9 +1,0 @@
-{
-  "project_slug": "package-name",
-  "package": "{{ cookiecutter.project_slug.lower().replace(\"-\",\"_\").replace(\" \",\"_\") }}",
-  "description": "An awesome package is coming soon! 🎉",
-  "full_name": "Marcelo Trylesinski",
-  "email": "marcelotryle@email.com",
-  "github": "Kludex",
-  "twitter": "marcelotryle"
-}

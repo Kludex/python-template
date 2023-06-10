@@ -1,0 +1,33 @@
+_jinja_extensions:
+  - copier_templates_extensions.TemplateExtensionLoader
+  - extensions/context.py:ContextUpdater
+
+project_name:
+  type: str
+  help: What's the name of the project?
+  placeholder: package-name
+
+description:
+  type: str
+  help: What's the description of the package?
+  default: An awesome package is coming soon! 🎉
+
+full_name:
+  type: str
+  help: What's your full name?
+  default: Marcelo Trylesinski
+
+email:
+  type: str
+  help: What's your email?
+  default: marcelotryle@gmail.com
+
+github:
+  type: str
+  help: What's your GitHub username?
+  default: Kludex
+
+twitter:
+  type: str
+  help: What's your Twitter username?
+  default: marcelotryle
