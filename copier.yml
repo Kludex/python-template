@@ -2,10 +2,12 @@ _jinja_extensions:
   - copier_templates_extensions.TemplateExtensionLoader
   - extensions/context.py:ContextUpdater
 
+_subdirectory: template
+
 project_name:
   type: str
   help: What's the name of the project?
-  placeholder: package-name
+  default: package-name
 
 description:
   type: str
