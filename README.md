@@ -4,6 +4,13 @@ This is a personal template that I like to use for Python packages.
 
 There aren't many customizable options because my needs are satisfied, but you're free to use and modify according to what you need.
 
+## Features
+
+- ✅ Dependabot
+- ✅ GitHub Actions
+- [ ] Coverage
+- [ ] Documentation
+
 ## Usage
 
 First, you'll need to install [copier](https://copier.readthedocs.io/en/stable/).

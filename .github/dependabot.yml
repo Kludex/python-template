@@ -1,6 +1,6 @@
 version: 2
 updates:
   - package-ecosystem: "pip"
-    directory: "{{ project_slug }}"
+    directory: "template/{{ project_name }}"
     schedule:
       interval: "monthly"
