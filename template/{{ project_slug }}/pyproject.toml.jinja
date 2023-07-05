@@ -4,7 +4,6 @@ build-backend = 'hatchling.build'
 
 [project]
 name = "{{ project_slug }}"
-version = "0.0.0"
 description = "{{ description }}"
 readme = "README.md"
 authors = [
@@ -27,12 +26,16 @@ license = "MIT"
 requires-python = ">=3.8"
 dependencies = []
 optional-dependencies = {}
+dynamic = ["version"]
 
 [project.urls]
 Homepage = "https://github.com/{{ github }}/{{ project_slug }}"
 Source = "https://github.com/{{ github }}/{{ project_slug }}"
 Twitter = "https://twitter.com/{{ twitter }}"
 Funding = "https://github.com/sponsors/{{ github }}"
+
+[tool.hatch.version]
+path = "{{ package }}/__init__.py"
 
 [tool.hatch.envs.dev]
 dependencies = [

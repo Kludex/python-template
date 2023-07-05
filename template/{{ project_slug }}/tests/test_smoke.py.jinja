@@ -1,7 +1,7 @@
 import inspect
 
-import {{ package }}
+from {{ package }} import __version__
 
 
 def test_smoke() -> None:
-    assert inspect.ismodule({{ package }})
+    assert __version__ is not None
