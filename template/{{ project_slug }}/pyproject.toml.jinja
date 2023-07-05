@@ -40,10 +40,10 @@ Homepage = "https://github.com/{{ github }}/{{ project_slug }}"
 Source = "https://github.com/{{ github }}/{{ project_slug }}"
 Twitter = "https://twitter.com/{{ twitter }}"
 Funding = "https://github.com/sponsors/{{ github }}"
-
+{% if cli %}
 [project.scripts]
 {{ project_slug }} = "{{ package }}.__main__:app"
-
+{% endif %}
 [tool.hatch.version]
 path = "{{ package }}/__init__.py"
 
