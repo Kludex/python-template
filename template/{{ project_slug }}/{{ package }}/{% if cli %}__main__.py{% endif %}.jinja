@@ -1,0 +1,40 @@
+import platform
+import typer
+
+from {{ package }} import __version__
+
+app = typer.Typer()
+
+
+def version_callback(value: bool) -> None:
+    if value:
+        typer.echo(
+            "Running {{ project_name }} {} with {} {} on {}.".format(
+                __version__,
+                platform.python_implementation(),
+                platform.python_version(),
+                platform.system(),
+            )
+        )
+        raise typer.Exit(0)
+
+
+@app.callback()
+def callback(
+    version: bool = typer.Option(
+        None,
+        "--version",
+        callback=version_callback,
+        is_eager=True,
+        help="Show version and exit.",
+    )
+):
+    ...
+
+
+@app.command()
+def hello(name: str):
+    print(f"Hello {name}")
+
+if __name__ == "__main__":
+    app()

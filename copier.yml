@@ -7,7 +7,12 @@ _subdirectory: template
 project_name:
   type: str
   help: What's the name of the project?
-  default: package-name
+  default: Package Name
+
+cli:
+  type: bool
+  help: Do you want to add a CLI?
+  default: true
 
 description:
   type: str
