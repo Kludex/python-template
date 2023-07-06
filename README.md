@@ -18,7 +18,7 @@ First, you'll need to install [copier](https://copier.readthedocs.io/en/stable/)
 Then I invite you to run the following command:
 
 ``` bash
-cookiecutter https://github.com/Kludex/python-template
+copier copy https://github.com/Kludex/python-template .
 ```
 
 Answer some questions, and TADA! :tada:
