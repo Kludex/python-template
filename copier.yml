@@ -12,7 +12,7 @@ project_name:
 cli:
   type: bool
   help: Do you want to add a CLI?
-  default: true
+  default: false
 
 description:
   type: str

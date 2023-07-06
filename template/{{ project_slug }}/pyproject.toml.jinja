@@ -47,25 +47,25 @@ Funding = "https://github.com/sponsors/{{ github }}"
 [tool.hatch.version]
 path = "{{ package }}/__init__.py"
 
-[tool.hatch.envs.dev]
-dependencies = [
-    "black",
-    "mypy",
-    "ruff",
-    "pre-commit",
-    "bpython",
-]
+[tool.hatch.envs.default]
+dependencies = ["bpython", "black", "ruff", "mypy", "pre-commit"]
+
+[tool.hatch.envs.default.scripts]
+lint = ["black --check --diff {args:.}", "ruff check {args:.}", "mypy {args:.}"]
+format = ["black {args:.}", "ruff --fix --exit-non-zero-on-fix {args:.}"]
 
 [tool.hatch.envs.test]
-dependencies = [
-    "coverage[toml]",
-    "pytest",
-    "pytest-sugar",
-    "dirty-equals",
-]
+dependencies = ["coverage[toml]", "pytest", "pytest-sugar", "dirty-equals"]
+scripts.run = "coverage run -m pytest"
+scripts.report = "coverage report"
 
 [[tool.hatch.envs.test.matrix]]
 python = ["3.8", "3.9", "3.10", "3.11"]
+
+[tool.hatch.envs.docs]
+dependencies = ["mkdocs", "mkdocs-material"]
+scripts.build = "mkdocs build --clean --strict"
+scripts.serve = "mkdocs serve --dev-addr localhost:8000"
 
 [tool.mypy]
 strict = true

@@ -29,15 +29,8 @@ jobs:
           copier . . --defaults
           rm -rf template
 
-      - name: Run pre-commit
-        if: ${{ matrix.python-version == '3.10' }}
-        run: |
-          python -m pip install pre-commit
-          pre-commit run --all-files --show-diff-on-failure
-        working-directory: "package-name"
-
-      - name: Install dependencies
-        run: python -m pip install hatch
+      - name: Run linter
+        run: python -m hatch run lint
         working-directory: "package-name"
 
       - name: Run tests
