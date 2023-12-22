@@ -21,6 +21,7 @@ classifiers = [
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
 ]
 license = "MIT"
 requires-python = ">=3.8"
@@ -48,11 +49,11 @@ Funding = "https://github.com/sponsors/{{ github }}"
 path = "{{ package }}/__init__.py"
 
 [tool.hatch.envs.default]
-dependencies = ["bpython", "black", "ruff", "mypy", "pre-commit"]
+dependencies = ["bpython", "ruff", "mypy", "pre-commit"]
 
 [tool.hatch.envs.default.scripts]
-lint = ["black --check --diff {args:.}", "ruff check {args:.}", "mypy {args:.}"]
-format = ["black {args:.}", "ruff --fix --exit-non-zero-on-fix {args:.}"]
+lint = ["ruff check {args:.}", "mypy {args:.}"]
+format = ["ruff format {args:.}", "ruff --fix --exit-non-zero-on-fix {args:.}"]
 
 [tool.hatch.envs.test]
 dependencies = ["coverage[toml]", "pytest", "pytest-sugar", "dirty-equals"]
@@ -60,7 +61,7 @@ scripts.run = "coverage run -m pytest"
 scripts.report = "coverage report"
 
 [[tool.hatch.envs.test.matrix]]
-python = ["3.8", "3.9", "3.10", "3.11"]
+python = ["3.8", "3.9", "3.10", "3.11", "3.12"]
 
 [tool.hatch.envs.docs]
 dependencies = ["mkdocs", "mkdocs-material"]
@@ -70,8 +71,11 @@ scripts.serve = "mkdocs serve --dev-addr localhost:8000"
 [tool.mypy]
 strict = true
 
-[tool.black]
-target-version = ["py38"]
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
 
 [tool.pytest.ini_options]
 addopts = ["--strict-config", "--strict-markers"]
