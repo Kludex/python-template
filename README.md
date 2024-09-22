@@ -8,8 +8,7 @@ There aren't many customizable options because my needs are satisfied, but you'r
 
 - ✅ Dependabot
 - ✅ GitHub Actions
-- [ ] Coverage
-- [ ] Documentation
+- ✅ Documentation
 
 ## Usage
 
