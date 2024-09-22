@@ -44,7 +44,6 @@ jobs:
         uses: astral-sh/setup-uv@v2
         with:
           version: "0.4.12"
-          enable-cache: true
 
       - name: Install dependencies
         run: uv sync --frozen
@@ -58,6 +57,28 @@ jobs:
             --data email=${{ steps.github.outputs.email }} \
             --data github=${{ github.repository_owner }} \
             --data twitter=${{ steps.github.outputs.twitter }}
+
+      - name: Rename generated folder to a temporary name
+        run: |
+          GENERATED_FOLDER="${{ steps.repository.outputs.name }}"
+          mv $GENERATED_FOLDER temp_generated_folder
+
+      - name: Remove all files and directories in the root except temporary generated folder
+        run: |
+          find . -mindepth 1 ! -regex "^./temp_generated_folder\(/.*\)?" -delete
+
+      - name: Move generated project to root
+        run: |
+          shopt -s dotglob
+          mv temp_generated_folder/* ./
+          mv temp_generated_folder/.* ./
+          rmdir temp_generated_folder
+
+      - name: Amend the commit history
+        run: |
+          git add .
+          git commit --amend -m "First commit"
+          git push --force
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
