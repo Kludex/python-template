@@ -72,13 +72,8 @@ jobs:
             rsync -av temp_generated_folder/ ./
             rm -rf temp_generated_folder
 
-      - name: Amend the commit history
-        run: |
-          git add .
-          git commit --amend -m "First commit"
-          git push --force
-
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "✅ Ready to clone and code."
+          commit_message: "First commit 🎉"
+          commit_options: --amend --no-edit
           push_options: --force
