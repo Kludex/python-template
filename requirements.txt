@@ -1,5 +1,0 @@
-copier==7.2.0
-copier_templates_extensions
-pydantic<2
-hatch
-pre-commit

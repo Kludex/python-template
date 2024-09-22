@@ -1,3 +1,4 @@
-.DS_Store
 .ruff_cache
 package-name
+.venv
+.python-version

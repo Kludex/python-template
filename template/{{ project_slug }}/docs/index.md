@@ -1,8 +1,8 @@
 ---
 
-**Documentation**: View it on [website](https://kludex.github.io/{{ project_slug }}/)
+**Documentation**: View it on [website](https://{{ github }}.github.io/{{ project_slug }}/)
 
-**Source Code**: View it on [Github](https://github.com/kludex/{{ project_slug }}/)
+**Source Code**: View it on [Github](https://github.com/{{ github }}/{{ project_slug }}/)
 
 ---
 
