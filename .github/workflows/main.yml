@@ -10,7 +10,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    # You can remove this line if you've used the template repository.
+    # TODO(Marcelo): You can remove this line if you've used the template repository.
     if: github.repository != 'Kludex/python-template'
 
     strategy:
@@ -40,7 +40,8 @@ jobs:
 
   # https://github.com/marketplace/actions/alls-green#why used for branch protection checks
   check:
-    if: always()
+    # TODO(Marcelo): You can remove this line if you've used the template repository.
+    if: github.repository != 'Kludex/python-template' && always()
     needs: [test]
     runs-on: ubuntu-latest
     steps:
