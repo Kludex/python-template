@@ -30,7 +30,7 @@ jobs:
 
       - name: Run Copier
         run: |
-          uv run copier copy . . --trust
+          uv run copier copy . . --trust --defaults
           rm -rf template
 
       - name: Run linter
