@@ -40,7 +40,7 @@ jobs:
 
   # https://github.com/marketplace/actions/alls-green#why used for branch protection checks
   check:
-    # TODO(Marcelo): You can remove this line if you've used the template repository.
+    # TODO(Marcelo): You can remove the `github.repository` conditional if you used the template repository.
     if: github.repository != 'Kludex/python-template' && always()
     needs: [test]
     runs-on: ubuntu-latest
