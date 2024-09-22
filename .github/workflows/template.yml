@@ -71,7 +71,8 @@ jobs:
         run: |
           shopt -s dotglob
           mv temp_generated_folder/* ./
-          mv temp_generated_folder/.* ./
+          mv temp_generated_folder/.[!.]* ./
+          mv temp_generated_folder/..?* ./
           rmdir temp_generated_folder
 
       - name: Amend the commit history
