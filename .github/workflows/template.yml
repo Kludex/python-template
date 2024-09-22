@@ -54,9 +54,9 @@ jobs:
         run: |
           uv run copier copy . . --trust --defaults \
             --data project_name=${{ steps.repository.outputs.name }} \
-            --data full_name=${{ steps.github.outputs.full_name }} \
-            --data email=${{ steps.github.outputs.email }}
-            --data github=${{ github.repository_owner }}
+            --data full_name="${{ steps.github.outputs.full_name }}" \
+            --data email=${{ steps.github.outputs.email }} \
+            --data github=${{ github.repository_owner }} \
             --data twitter=${{ steps.github.outputs.twitter }}
 
       - uses: stefanzweifel/git-auto-commit-action@v4
