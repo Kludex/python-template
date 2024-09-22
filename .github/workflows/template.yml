@@ -64,16 +64,13 @@ jobs:
           mv $GENERATED_FOLDER temp_generated_folder
 
       - name: Remove all files and directories in the root except temporary generated folder
-        run: |
-          find . -mindepth 1 ! -regex "^./temp_generated_folder\(/.*\)?" -delete
+        run: find . -mindepth 1 ! -regex "^./temp_generated_folder\(/.*\)?" -delete
 
       - name: Move generated project to root
-        run: |
-          shopt -s dotglob
-          mv temp_generated_folder/* ./
-          mv temp_generated_folder/.[!.]* ./
-          mv temp_generated_folder/..?* ./
-          rmdir temp_generated_folder
+        run: find temp_generated_folder -mindepth 1 -exec mv -t . {} +
+
+      - name: Remove temporary generated folder
+        run: rmdir temp_generated_folder
 
       - name: Amend the commit history
         run: |
