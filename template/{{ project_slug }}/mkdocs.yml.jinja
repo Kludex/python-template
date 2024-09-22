@@ -1,13 +1,50 @@
-site_name: My Docs
-theme:
-  name: material
-  palette:
-    primary: "blue"
-    accent: "orange"
-  font:
-    text: "Ubuntu"
+site_name: {{ project_name }}
+site_url: https://{{ github }}.github.io/{{ project_slug }}
+site_author: {{ full_name }}
+{# copyright: Copyright &copy; {% now 'utc', '%Y' %} {{ full_name }} #}
+
 repo_name: {{ github }}/{{ project_slug }}
 repo_url: https://github.com/{{ github }}/{{ project_slug }}
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  features:
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+    - navigation.indexes
+    - navigation.path
+    - navigation.tabs
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.sections
+    - navigation.tracking
+    - navigation.top # alternatively, we could do navigation.tabs.sticky
+    - toc.follow
+    - toc.integrate
+  font:
+    text: "Ubuntu"
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: slate
+      primary: red
+      toggle:
+        icon: material/lightbulb
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: default
+      primary: red
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to system preference
 
 nav:
   - Home: index.md

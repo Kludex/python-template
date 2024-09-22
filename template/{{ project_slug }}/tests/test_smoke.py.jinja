@@ -1,5 +1,3 @@
-from {{ package }} import __version__
-
-
 def test_smoke() -> None:
-    assert __version__ is not None
+    import {{ package }}
+    assert {{ package }} is not None

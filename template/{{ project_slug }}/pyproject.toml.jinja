@@ -5,10 +5,9 @@ build-backend = 'hatchling.build'
 [project]
 name = "{{ project_slug }}"
 description = "{{ description }}"
+version = "0.1.0"
 readme = "README.md"
-authors = [
-    { name = "{{ full_name }}", email = "{{ email }}" },
-]
+authors = [{ name = "{{ full_name }}", email = "{{ email }}" }]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "License :: OSI Approved :: MIT License",
@@ -25,63 +24,65 @@ classifiers = [
 ]
 license = "MIT"
 requires-python = ">=3.8"
-{% if cli -%}
-dependencies = [
-    "typer>=0.9.0,<0.10.0",
-    "rich>=13.0.0,<14.0.0",
-]
-{% else -%}
 dependencies = []
-{% endif -%}
 optional-dependencies = {}
-dynamic = ["version"]
 
 [project.urls]
 Homepage = "https://github.com/{{ github }}/{{ project_slug }}"
 Source = "https://github.com/{{ github }}/{{ project_slug }}"
 Twitter = "https://twitter.com/{{ twitter }}"
 Funding = "https://github.com/sponsors/{{ github }}"
-{% if cli %}
-[project.scripts]
-{{ project_slug }} = "{{ package }}.__main__:app"
-{% endif %}
-[tool.hatch.version]
-path = "{{ package }}/__init__.py"
 
-[tool.hatch.envs.default]
-dependencies = ["ruff==0.3.4", "mypy==1.9.0", "pre-commit"]
+[tool.uv]
+dev-dependencies = [
+    "ruff",
+    "mypy",
+    "pre-commit",
+    # Test dependencies
+    "coverage[toml]",
+    "pytest",
+    "pytest-sugar",
+    "dirty-equals",
+    "inline-snapshot"
+]
 
-[tool.hatch.envs.default.scripts]
-lint = ["ruff check {args:.}", "mypy {args:.}"]
-format = ["ruff format {args:.}", "ruff --fix --exit-non-zero-on-fix {args:.}"]
+[tool.hatch.metadata]
+allow-direct-references = true
 
-[tool.hatch.envs.test]
-dependencies = ["coverage[toml]", "pytest", "pytest-sugar", "dirty-equals"]
-scripts.run = "coverage run -m pytest"
-scripts.report = "coverage report"
-
-[[tool.hatch.envs.test.matrix]]
-python = ["3.8", "3.9", "3.10", "3.11", "3.12"]
-
-[tool.hatch.envs.docs]
-dependencies = ["mkdocs", "mkdocs-material"]
-scripts.build = "mkdocs build --clean --strict"
-scripts.serve = "mkdocs serve --dev-addr localhost:8000"
+[tool.hatch.build.targets.sdist]
+include = ["/README.md", "LICENSE" "/{{ package }}", "/tests"]
 
 [tool.mypy]
 strict = true
 
+[tool.ruff]
+line-length = 120
+
 [tool.ruff.lint]
-select = ["E", "F", "I"]
+select = [
+    "E",      # https://docs.astral.sh/ruff/rules/#error-e
+    "F",      # https://docs.astral.sh/ruff/rules/#pyflakes-f
+    "I",      # https://docs.astral.sh/ruff/rules/#isort-i
+    "FA",     # https://docs.astral.sh/ruff/rules/#flake8-future-annotations-fa
+    "UP",     # https://docs.astral.sh/ruff/rules/#pyupgrade-up
+    "RUF100", # https://docs.astral.sh/ruff/rules/#ruff-specific-rules-ruf
+]
 isort = { combine_as_imports = true }
 
+[tool.ruff.format]
+docstring-code-format = true
+skip-magic-trailing-comma = true
+
 [tool.pytest.ini_options]
-addopts = ["--strict-config", "--strict-markers"]
+addopts = "-rXs --strict-config --strict-markers"
+xfail_strict = true
 filterwarnings = ["error"]
 
 [tool.coverage.run]
+branch = true
 source_pkgs = ["{{ package }}", "tests"]
 
 [tool.coverage.report]
+fail_under = 100
 show_missing = true
 skip_covered = true
