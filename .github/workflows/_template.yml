@@ -36,10 +36,6 @@ jobs:
         id: repository
         run: echo "name=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}' | tr '-' '_' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
 
-      - name: Is this still the template?
-        id: is_template
-        run: echo "is_template=$([[ '${{ github.repository }}' == 'Kludex/python-template' ]] && echo true || echo false)" >> $GITHUB_OUTPUT
-
       - name: Install uv
         uses: astral-sh/setup-uv@v2
         with:
@@ -49,7 +45,6 @@ jobs:
         run: uv sync --frozen
 
       - name: Run Copier
-        if: steps.is_template.outputs.is_template == 'true'
         run: |
           uv run copier copy . . --trust --defaults \
             --data project_name=${{ steps.repository.outputs.name }} \
