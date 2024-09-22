@@ -1,11 +1,11 @@
-name: Rename and execute Copier
+name: Execute Copier
 
 on: [push]
 
 permissions: write-all
 
 jobs:
-  rename-and-copy-project:
+  execute-copier:
     if: ${{ !contains(github.repository, '/python-template') }}
     runs-on: ubuntu-latest
     steps:
@@ -14,24 +14,50 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.head_ref }}
 
-      - run: echo "REPOSITORY_NAME=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}' | tr '-' '_' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
-        shell: bash
+      - name: Get data from GitHub API
+        id: github
+        run: |
+          response=$(gh api \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            /users/${{ github.repository_owner }})
 
-      - run: echo "REPOSITORY_URLNAME=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
-        shell: bash
+          twitter=$(echo "$response" | jq -r .twitter_username)
+          email=$(echo "$response" | jq -r .email)
+          full_name=$(echo "$response" | jq -r .name)
 
-      - run: echo "REPOSITORY_OWNER=$(echo '${{ github.repository }}' | awk -F '/' '{print $1}')" >> $GITHUB_ENV
-        shell: bash
+          echo "twitter=$twitter" >> $GITHUB_OUTPUT
+          echo "email=$email" >> $GITHUB_OUTPUT
+          echo "full_name=$full_name" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get Repository Name
+        id: repository
+        run: echo "name=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}' | tr '-' '_' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
 
       - name: Is this still a template
         id: is_template
         run: echo "is_template=$(ls .github/workflows/template.yml &> /dev/null && echo true || echo false)" >> $GITHUB_OUTPUT
 
-      - name: Rename and Copy Project with Copier
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+        with:
+          version: "0.4.12"
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Run Copier
         if: steps.is_template.outputs.is_template == 'true'
         run: |
-          echo "Running Copier with -n(name) ${{ env.REPOSITORY_NAME }} -u(urlname) ${{ env.REPOSITORY_URLNAME }}"
-          copier copy . . --trust --data project_name=${{ env.REPOSITORY_NAME }} --data description="Awesome ${{ env.REPOSITORY_NAME }} created by ${{ env.REPOSITORY_OWNER }}" --data full_name=${{ env.REPOSITORY_OWNER }}
+          uv run copier copy . . --trust --defaults \
+            --data project_name=${{ steps.repository.outputs.name }} \
+            --data full_name=${{ steps.github.outputs.full_name }} \
+            --data email=${{ steps.github.outputs.email }}
+            --data github=${{ github.repository_owner }}
+            --data twitter=${{ steps.github.outputs.twitter }}
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
