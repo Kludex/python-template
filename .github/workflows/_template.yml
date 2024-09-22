@@ -60,8 +60,8 @@ jobs:
 
       - name: Rename generated folder to a temporary name
         run: |
-            GENERATED_FOLDER="${{ steps.repository.outputs.name }}"
-            mv $GENERATED_FOLDER temp_generated_folder
+          GENERATED_FOLDER="${{ steps.repository.outputs.name }}"
+          mv $GENERATED_FOLDER temp_generated_folder
 
       - name: Remove all files and directories in the root except .git, .github, and temporary generated folder
         run: find . -mindepth 1 ! -regex "^./\.git\(/.*\)?" ! -regex "^./\.github\(/.*\)?" ! -regex "^./temp_generated_folder\(/.*\)?" -delete
