@@ -64,7 +64,8 @@ jobs:
             mv $GENERATED_FOLDER temp_generated_folder
 
       - name: Remove all files and directories in the root except temporary generated folder
-        run: find . -mindepth 1 ! -regex "^./temp_generated_folder\(/.*\)?" -delete
+        run: find . -mindepth 1 ! -regex "^./\.git\(/.*\)?" ! -regex "^./temp_generated_folder\(/.*\)?" -delete
+
 
       - name: Move generated project to root using rsync
         run: |
