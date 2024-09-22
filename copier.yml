@@ -9,11 +9,6 @@ project_name:
   help: What's the name of the project?
   default: Package Name
 
-cli:
-  type: bool
-  help: Do you want to add a CLI?
-  default: false
-
 description:
   type: str
   help: What's the description of the package?
