@@ -67,9 +67,7 @@ select = [
     "UP",     # https://docs.astral.sh/ruff/rules/#pyupgrade-up
     "RUF100", # https://docs.astral.sh/ruff/rules/#ruff-specific-rules-ruf
 ]
-
-[tool.ruff.lint.isort]
-combine_as_imports = true
+isort = { combine-as-imports = true }
 
 [tool.ruff.format]
 docstring-code-format = true
