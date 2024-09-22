@@ -25,7 +25,7 @@ jobs:
 
       - name: Is this still a template
         id: is_template
-        run: echo "::set-output name=is_template::$(ls .github/template.yml &> /dev/null && echo true || echo false)"
+        run: echo "is_template=$(ls .github/workflows/template.yml &> /dev/null && echo true || echo false)" >> $GITHUB_OUTPUT
 
       - name: Rename and Copy Project with Copier
         if: steps.is_template.outputs.is_template == 'true'
