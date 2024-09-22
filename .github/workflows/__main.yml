@@ -7,12 +7,13 @@ on:
     branches: ["main"]
 
 jobs:
-  test:
+  template:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
 
     steps:
       - uses: actions/checkout@v4
@@ -29,19 +30,15 @@ jobs:
       - name: Install dependencies
         run: uv sync --python ${{ matrix.python-version }} --frozen
 
+      - name: Run Copier
+        run: |
+          uv run copier copy . . --trust --defaults
+          rm -rf template
+
+      - name: Run linter
+        run: ./scripts/lint
+        working-directory: "package-name"
+
       - name: Run tests
-        run: scripts/test
-
-      - name: Run linters
-        run: scripts/lint
-
-  # https://github.com/marketplace/actions/alls-green#why used for branch protection checks
-  check:
-    if: always()
-    needs: [test]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Decide whether the needed jobs succeeded or failed
-        uses: re-actors/alls-green@release/v1
-        with:
-          jobs: ${{ toJSON(needs) }}
+        run: ./scripts/test
+        working-directory: "package-name"
