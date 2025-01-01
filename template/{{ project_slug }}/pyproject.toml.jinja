@@ -33,8 +33,8 @@ Source = "https://github.com/{{ github }}/{{ project_slug }}"
 Twitter = "https://twitter.com/{{ twitter }}"
 Funding = "https://github.com/sponsors/{{ github }}"
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
     "ruff",
     "mypy",
     "pre-commit",
@@ -45,6 +45,10 @@ dev-dependencies = [
     "dirty-equals",
     "inline-snapshot"
 ]
+docs = ["mkdocs", "mkdocs-material"]
+
+[tool.uv]
+default-groups = ["dev", "docs"]
 
 [tool.hatch.metadata]
 allow-direct-references = true
